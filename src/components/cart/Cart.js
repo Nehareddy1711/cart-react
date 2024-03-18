@@ -4,7 +4,6 @@ import { AppContext } from "../../context/appContext.js";
 import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-// import prodlist from "../product/products.json"
 import "./Cart.css";
 import { Navigate } from "react-router-dom";
 export default function Cart() {
@@ -93,7 +92,6 @@ export default function Cart() {
                   );
                 }
               })}
-              {/* <tr><td colspan="3">Total Order Value</td><td className="Cart-order-value">{orderValue}</td></tr> */}
             </table>
           </div>
           <div className="Cart-div-right">

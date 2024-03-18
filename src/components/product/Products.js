@@ -1,27 +1,45 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { AppContext } from "../../context/appContext.js";
-import products from "./products.json"
-import "./Product.css"
+import products from "./products.json";
+import "./Product.css";
 import AddButton from "./AddButton.js";
+import ViewCart from "./ViewCart.js";
+import { Link } from "react-router-dom";
+
 export default function Products() {
   const { cartItems, setCartItems } = useContext(AppContext);
-  const PATH = process.env.REACT_APP_PATH
-  // const addtoCart = (id) => {
-  //   setCartItems((prev) => ({ ...prev, [id]: (prev[id] ?? 0) + 1 }));
-  // };
+
+  const PATH = process.env.REACT_APP_PATH;
+  const {selectedProduct, setSelectedProduct} = useContext(AppContext);
+  const handleClick = (value) => {
+    setSelectedProduct(value);
+  };
 
   return (
     <div className="Product-container">
       {products &&
         products.map((value) => (
           <div key={value.id} className="Product-items">
-            <div><img className="Product-img" src={`${PATH}${value.image}`} alt={value.name}/></div>
+            <Link to={`${PATH}/product`}>
+              <div>
+                <img
+                  className="Product-img"
+                  src={`${PATH}${value.image}`}
+                  alt={value.name}
+                  onClick={() => handleClick(value)}
+                />
+              </div>
+            </Link>
+
             <h3>{value.name}</h3>
-            <p style={{textAlign:"justify",padding:"10px"}}>{value.desc}</p>
+            <p style={{ textAlign: "justify", padding: "10px" }}>
+              {value.desc}
+            </p>
             <div className="priceBtn">
-            <div className="priceTxt">₹{value.price}</div>
-            <div className="Product-button"><AddButton id={value.id}/></div>
-            {/* <button className="Product-button" onClick={() => addtoCart(value.id)}>Add</button> */}
+              <div className="priceTxt">₹{value.price}</div>
+              <div className="Product-button">
+                <AddButton id={value.id} />
+              </div>
             </div>
           </div>
         ))}

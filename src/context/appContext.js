@@ -8,6 +8,7 @@ export const AppContextProvider = (props) => {
   const [user, setUser] = useState({});
   const [users, setUsers] = useState([]);
   const [flag, setFlag] = useState(0);
+  const [selectedProduct, setSelectedProduct] = useState();
 
   const val = {
     cartItems,
@@ -18,6 +19,8 @@ export const AppContextProvider = (props) => {
     user,
     setUser,
     users,
+    selectedProduct,
+    setSelectedProduct,
     setUsers,
     flag,setFlag
   };
